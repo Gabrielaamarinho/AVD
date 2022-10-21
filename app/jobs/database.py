@@ -1,41 +1,34 @@
 import psycopg2
-from sqlalchemy import create_engine
 from create_dataframes import freq_categorias
 
-conn_string = 'postgres://postgres:pass@127.0.0.1/TESTE'
-
-db = create_engine(conn_string)
-conn = db.connect()
-conn1 = psycopg2.connect(
-	database="TESTE",
-user='postgres',
-password='pass',
-host='127.0.0.1',
-port= '5432'
+conn = psycopg2.connect(
+    database="avd",
+    user='root',
+    password='root',
+    host='localhost',
+    port='5432'
 )
 
-conn1.autocommit = True
-cursor = conn1.cursor()
+conn.autocommit = True
+cursor = conn.cursor()
 
-cursor.execute('drop table if exists TESTE_TABLE')
+cursor.execute('drop table if exists FREQ_CATEGORIAS')
 
-sql = '''CREATE TABLE TESTE_TABLE(id int ,
-Categoria char(50),Frequencia int);'''
+sql = '''CREATE TABLE FREQ_CATEGORIAS(Categoria varchar(50),Frequencia int)'''
 
 cursor.execute(sql)
 
 # importar csv
 data = freq_categorias()
 
-# converter data para sql
-data.to_sql('frequencia_categorias', conn, if_exists= 'replace')
+# # converter data para sql 
+# data.to_sql('FREQ_CATEGORIAS', conn, if_exists='replace', index=False)
 
-# fetching all rows
-sql1='''select * from frequencia_categorias;'''
-cursor.execute(sql1)
+cursor.execute("insert into FREQ_CATEGORIAS values ('teste',3)")
+# # fetching all rows
+cursor.execute('select * from FREQ_CATEGORIAS')
 for i in cursor.fetchall():
-	print(i)
+    print(i)
 
-conn1.commit()
-conn1.close()
-
+conn.commit()
+conn.close()

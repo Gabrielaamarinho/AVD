@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 
 #LECOM
-fornecedores = pd.DataFrame(pd.read_csv('./data/fornecedores.csv', delimiter=','))
+fornecedores = pd.DataFrame(pd.read_csv('app/data/fornecedores.csv', delimiter=','))
 new_header = fornecedores.iloc[0]
 fornecedores = fornecedores[1:]
 fornecedores.columns = new_header
 fornecedores = fornecedores[fornecedores['Fornecedor'].notna()]
 
-avaliacoes = pd.DataFrame(pd.read_csv('./data/avaliacoes.csv', delimiter=','))
+avaliacoes = pd.DataFrame(pd.read_csv('app/data/avaliacoes.csv', delimiter=','))
 new_header = avaliacoes.iloc[0]
 avaliacoes = avaliacoes[1:]
 avaliacoes.columns = new_header
@@ -21,10 +21,10 @@ fornecedores_avaliacoes = fornecedores.merge(avaliacoes,how='left',left_on='Forn
 
 
 # PIRAMIDE
-recife = pd.DataFrame(pd.read_csv('./data/fornecedores.csv', delimiter=','))
-norte = pd.DataFrame(pd.read_csv('./data/fornecedores.csv', delimiter=','))
-sorocaba = pd.DataFrame(pd.read_csv('./data/fornecedores.csv', delimiter=','))
-curitiba = pd.DataFrame(pd.read_csv('./data/fornecedores.csv', delimiter=','))
+recife = pd.DataFrame(pd.read_csv('app/data/relatorio_recife.csv', delimiter=','))
+norte = pd.DataFrame(pd.read_csv('app/data/relatorio_norte.csv', delimiter=','))
+sorocaba = pd.DataFrame(pd.read_csv('app/data/relatorio_sorocaba.csv', delimiter=','))
+curitiba = pd.DataFrame(pd.read_csv('app/data/relatorio_curitiba.csv', delimiter=','))
 relatorios = pd.concat([recife,norte,sorocaba,curitiba])
 
 # DF SETORES

@@ -3,7 +3,7 @@ services:
   avd_tester:
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.postgres
   db:
       container_name: postgres-container
       image: postgres
@@ -16,6 +16,6 @@ services:
       ports:
         - "5432:5432"
       volumes:
-        - /home/docker/volumes/db:/var/lib/postgresql/data
+        - /Volumes:/var/lib/postgresql/data
 volumes:
   pg_data:
