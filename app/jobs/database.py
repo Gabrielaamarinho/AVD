@@ -1,34 +1,26 @@
 import psycopg2
+import pandas as pd
+from sqlalchemy import create_engine
 from create_dataframes import freq_categorias
+from sqlalchemy.ext.declarative import declarative_base
 
-conn = psycopg2.connect(
-    database="avd",
-    user='root',
-    password='root',
-    host='localhost',
-    port='5432'
-)
+conn_string = 'postgresql://root:root@127.0.0.1:5432/avd'
 
-conn.autocommit = True
-cursor = conn.cursor()
+try:
+	data = freq_categorias()
 
-cursor.execute('drop table if exists FREQ_CATEGORIAS')
+	db = create_engine(conn_string)
+	
+	dados = data.to_sql('freq_categorias', db, if_exists='replace', index=False)
+	
+	conn = psycopg2.connect(conn_string)
+	conn.autocommit = True
+	cursor = conn.cursor()
+	sql1 = '''select * from freq_categorias;'''
+	cursor.execute(sql1)
+	for i in cursor.fetchall():
+		print(i)
 
-sql = '''CREATE TABLE FREQ_CATEGORIAS(Categoria varchar(50),Frequencia int)'''
 
-cursor.execute(sql)
-
-# importar csv
-data = freq_categorias()
-
-# # converter data para sql 
-# data.to_sql('FREQ_CATEGORIAS', conn, if_exists='replace', index=False)
-
-cursor.execute("insert into FREQ_CATEGORIAS values ('teste',3)")
-# # fetching all rows
-cursor.execute('select * from FREQ_CATEGORIAS')
-for i in cursor.fetchall():
-    print(i)
-
-conn.commit()
-conn.close()
+except(Exception, psycopg2.Error) as error:
+	print("Error while connecting to PostgreSQL", error)
