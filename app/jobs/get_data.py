@@ -30,9 +30,9 @@ def save_response_content(response, destination):
                 f.write(chunk)
 
 if __name__ == "__main__":
-    download_file_from_google_drive('1gicuzoA80zCR2DgtXqPY87HcMP4fDxJE', 'app/data/fornecedores.csv')
-    download_file_from_google_drive('1KVNl6YiZeRlMelvgQjTXSO1T68vS6OuF', 'app/data/avaliacoes.csv')
-    download_file_from_google_drive('19ShHKn88_zBmf2x9lfc4aCn3-bkubhl4', 'app/data/relatorio_recife.csv')
-    download_file_from_google_drive('1zXznw_vqngsnf9mvXjUKQi3o0ZUHSmvr', 'app/data/relatorio_norte.csv')
-    download_file_from_google_drive('1MmZ2ayBWinT516p6JGc9Xpz3tb99wXn_', 'app/data/relatorio_curitiba.csv')
-    download_file_from_google_drive('104XwNDfqcAQsL50xrp-Sqg5FP-e4e7Sl', 'app/data/relatorio_sorocaba.csv')
+    download_file_from_google_drive('1gicuzoA80zCR2DgtXqPY87HcMP4fDxJE', '../data/fornecedores.csv')
+    download_file_from_google_drive('1KVNl6YiZeRlMelvgQjTXSO1T68vS6OuF', '../data/avaliacoes.csv')
+    download_file_from_google_drive('19ShHKn88_zBmf2x9lfc4aCn3-bkubhl4', '../data/relatorio_recife.csv')
+    download_file_from_google_drive('1zXznw_vqngsnf9mvXjUKQi3o0ZUHSmvr', '../data/relatorio_norte.csv')
+    download_file_from_google_drive('1MmZ2ayBWinT516p6JGc9Xpz3tb99wXn_', '../data/relatorio_curitiba.csv')
+    download_file_from_google_drive('104XwNDfqcAQsL50xrp-Sqg5FP-e4e7Sl', '../data/relatorio_sorocaba.csv')
