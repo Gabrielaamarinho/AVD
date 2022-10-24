@@ -38,5 +38,9 @@ services:
       - db
     links:
       - db
+  python:
+    build: 
+      context: .
+      dockerfile: Dockerfile.python
 volumes:
   pg_data:
