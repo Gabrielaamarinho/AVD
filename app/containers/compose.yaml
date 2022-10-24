@@ -24,7 +24,7 @@ services:
     ports:
       - 3001:3000
     volumes:
-      - /home/app/metabase-data:/metabase-data
+      - /var/folders/metabase-data:/metabase-data
     environment:
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: avd
@@ -38,5 +38,9 @@ services:
       - db
     links:
       - db
+  python:
+    build: 
+      context: .
+      dockerfile: Dockerfile.python
 volumes:
   pg_data:

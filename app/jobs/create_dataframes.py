@@ -30,6 +30,10 @@ frequencia_categorias = pd.DataFrame(fornecedores["Produto / Serviço"].value_co
 frequencia_categoriasindex = frequencia_categorias.sort_index(axis = 0, ascending=True)
 frequencia_categoriasindex = frequencia_categoriasindex.loc[(frequencia_categoriasindex.Frequencia > 4)]
 
+# DF LOCAIS/NÃO LOCAIS
+fornecedores["Fornecedor Local"] = pd.get_dummies(fornecedores["Fornecedor Local"])
+fornecedores_locais =  pd.DataFrame(fornecedores["Fornecedor Local"].value_counts().reset_index().values, columns=["Local?", "Frequencia"])
+fornecedores_locais["Local?"] = ["Não", "Sim"]
 
 def lecom_data():
   return fornecedores_avaliacoes
@@ -39,3 +43,6 @@ def piramide_data():
 
 def freq_categorias():
   return frequencia_categoriasindex
+
+def is_local():
+  return fornecedores_locais
