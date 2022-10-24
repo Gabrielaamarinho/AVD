@@ -3,7 +3,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-
 # LECOM
 fornecedores = pd.DataFrame(pd.read_csv(
     '../data/fornecedores.csv', delimiter=','))
@@ -41,9 +40,12 @@ frequencia_categoriasindex = frequencia_categoriasindex.loc[(
     frequencia_categoriasindex.Frequencia > 4)]
 
 # DF LOCAIS/NÃO LOCAIS
-fornecedores["Fornecedor Local"] = pd.get_dummies(fornecedores["Fornecedor Local"])
-fornecedores_locais =  pd.DataFrame(fornecedores["Fornecedor Local"].value_counts().reset_index().values, columns=["Local?", "Frequencia"])
+fornecedores["Fornecedor Local"] = pd.get_dummies(
+    fornecedores["Fornecedor Local"])
+fornecedores_locais = pd.DataFrame(fornecedores["Fornecedor Local"].value_counts(
+).reset_index().values, columns=["Local?", "Frequencia"])
 fornecedores_locais["Local?"] = ["Não", "Sim"]
+
 
 def lecom_data():
     return fornecedores_avaliacoes
@@ -54,7 +56,8 @@ def piramide_data():
 
 
 def freq_categorias():
-  return frequencia_categoriasindex
+    return frequencia_categoriasindex
+
 
 def is_local():
-  return fornecedores_locais
+    return fornecedores_locais
