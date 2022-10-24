@@ -3,7 +3,9 @@ import pandas as pd
 from sqlalchemy import create_engine
 from create_dataframes import freq_categorias, is_local
 
-conn_string = 'postgresql://root:root@127.0.0.1:5432/avd'
+
+def create_db(df):
+    conn_string = 'postgresql://root:root@127.0.0.1:5432/avd'
 
 try:
 	freq = freq_categorias()
@@ -22,6 +24,6 @@ try:
 	for i in cursor.fetchall():
 		print(i)
 
-
-except(Exception, psycopg2.Error) as error:
-	print("Error while connecting to PostgreSQL", error)
+    except (Exception, psycopg2.Error) as error:
+        print("Error while connecting to PostgreSQL", error)
+    return
