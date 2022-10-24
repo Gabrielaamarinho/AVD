@@ -37,10 +37,6 @@ services:
     depends_on:
       - db
     links:
-      - db
-  python:
-    build: 
-      context: .
-      dockerfile: Dockerfile.python
+      - db 
 volumes:
   pg_data:

@@ -47,3 +47,7 @@ def save_csv():
     download_file_from_google_drive(
         '104XwNDfqcAQsL50xrp-Sqg5FP-e4e7Sl', '../data/relatorio_sorocaba.csv')
     return
+
+
+if __name__ == "__main__":
+    save_csv()
